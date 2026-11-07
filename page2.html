@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>The Memories</title>
+
+    <!-- Fonts -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Special+Elite&display=swap"
+        rel="stylesheet"
+    >
+
+    <link rel="stylesheet" href="page2.css">
+
+    <style>
+
+        /* =========================================================
+           PAGE 2 ENTRANCE TRANSITION
+        ========================================================= */
+
+        .memory-date .memory-link {
+
+            font-family: 'Patrick Hand', cursive;
+
+            font-size: 1.15em;
+
+            color: #e8e5ff;
+
+            background: rgba(116, 103, 255, 0.16);
+
+            border: 1px solid rgba(232, 229, 255, 0.55);
+
+            border-radius: 24px;
+
+            padding: 7px 24px;
+
+            cursor: pointer;
+
+            transition: all 0.25s ease;
+
+        }
+
+
+        .memory-date .memory-link:hover {
+
+            background: rgba(116, 103, 255, 0.32);
+
+            border-color: #ffffff;
+
+            transform: translateY(-2px);
+
+        }
+
+
+        .page2-transition {
+
+            position: fixed;
+
+            inset: 0;
+
+            background: #e8e5ff;
+
+            z-index: 9999;
+
+            opacity: 1;
+
+            pointer-events: none;
+
+            animation:
+                page2FadeIn
+                1.2s
+                ease
+                forwards;
+
+        }
+
+
+        @keyframes page2FadeIn {
+
+            from {
+
+                opacity: 1;
+
+            }
+
+            to {
+
+                opacity: 0;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================================================
+     PAGE 2 ENTRANCE TRANSITION
+========================================================= -->
+
+<div class="page2-transition"></div>
+
+
+
+<div class="scene">
+
+
+    <!-- Background glow -->
+
+    <div class="glow"></div>
+
+
+    <!-- Top-left -->
+
+    <div class="chapter-mark">
+
+        <span>CHAPTER 02</span>
+
+        <div class="little-line"></div>
+
+        <p>
+            some moments stay with us
+        </p>
+
+    </div>
+
+
+    <!-- Main heading -->
+
+    <main class="intro">
+
+        <div class="small-title">
+
+            THE MEMORIES
+
+        </div>
+
+
+        <h1>
+
+            Every story<br>
+            is made of little moments.
+
+        </h1>
+
+
+        <p>
+
+            Maybe it's time to remember a few.
+
+        </p>
+
+    </main>
+
+
+    <!-- =================================================
+         POLAROIDS
+    ================================================== -->
+
+
+    <div
+        class="memory memory-one"
+        onclick="openMemory(1)"
+    >
+
+        <div class="photo">
+
+            <span>01</span>
+
+            <div class="photo-symbol">
+                ✦
+            </div>
+
+        </div>
+
+        <div class="caption">
+
+            The beginning.
+
+        </div>
+
+    </div>
+
+
+
+    <div
+        class="memory memory-two"
+        onclick="openMemory(2)"
+    >
+
+        <div class="photo">
+
+            <span>02</span>
+
+            <div class="photo-symbol">
+                ♡
+            </div>
+
+        </div>
+
+        <div class="caption">
+
+            Somewhere along the way.
+
+        </div>
+
+    </div>
+
+
+
+    <div
+        class="memory memory-three"
+        onclick="openMemory(3)"
+    >
+
+        <div class="photo">
+
+            <span>03</span>
+
+            <div class="photo-symbol">
+                ♡
+            </div>
+
+        </div>
+
+        <div class="caption">
+
+            A moment worth keeping.
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         BUTTERFLY
+    ================================================== -->
+
+    <div class="floating-butterfly">
+
+        <img
+            src="lis_butterfly.png"
+            alt="Butterfly"
+        >
+
+    </div>
+
+
+    <!-- =================================================
+         BOTTOM
+    ================================================== -->
+
+    <div class="bottom-message">
+
+        <span>
+            hover over a memory
+        </span>
+
+        <div class="dots">
+            • • •
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         MEMORY MODAL
+    ================================================== -->
+
+    <div
+        class="memory-overlay"
+        id="memoryOverlay"
+    >
+
+        <div class="memory-card">
+
+
+            <button
+                class="close"
+                onclick="closeMemory()"
+            >
+
+                ×
+
+            </button>
+
+
+            <div
+                class="memory-number"
+                id="memoryNumber"
+            >
+
+                MEMORY 01
+
+            </div>
+
+
+            <div
+                class="memory-symbol"
+                id="memorySymbol"
+            >
+
+                ✦
+
+            </div>
+
+
+            <p
+                class="memory-text"
+                id="memoryText"
+            >
+
+            </p>
+
+
+            <div class="memory-date" id="memoryDate">
+
+                somewhere in our timeline
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         REWIND
+    ================================================== -->
+
+    <div
+        class="rewind"
+        onclick="rewindMemory()"
+    >
+
+        ↶ REWIND
+
+    </div>
+
+
+    <!-- =================================================
+         NEXT
+    ================================================== -->
+
+    <button
+        class="next"
+        onclick="nextPage()"
+    >
+
+        continue →
+
+    </button>
+
+
+</div>
+
+
+
+<script>
+
+
+/* =========================================================
+   CREATE DUST
+========================================================= */
+
+const scene =
+    document.querySelector(".scene");
+
+
+for (let i = 0; i < 130; i++) {
+
+    const dust =
+        document.createElement("div");
+
+
+    dust.classList.add("dust");
+
+
+    dust.style.left =
+        Math.random() * 100 + "%";
+
+
+    dust.style.top =
+        Math.random() * 100 + "%";
+
+
+    dust.style.animationDelay =
+        Math.random() * 7 + "s";
+
+
+    dust.style.animationDuration =
+        3 + Math.random() * 6 + "s";
+
+
+    dust.style.opacity =
+        .15 + Math.random() * .5;
+
+
+    scene.appendChild(dust);
+
+}
+
+
+/* =========================================================
+   MEMORY DATA
+========================================================= */
+
+const memories = {
+
+    1: {
+
+        number: "MEMORY 01",
+
+        symbol: "✦",
+
+        text:
+            "Sometimes you meet someone without realizing that they're about to become an important part of your story."
+
+    },
+
+
+    2: {
+
+        number: "MEMORY 02",
+
+        symbol: "♡",
+
+        text:
+            "And then, little by little, ordinary moments start becoming the ones you remember the most."
+
+    },
+
+
+    3: {
+
+        number: "MEMORY 03",
+
+        symbol: "♡",
+
+        text:
+            "Maybe that's what the butterfly effect really means. One tiny moment can change the entire story."
+
+    }
+
+};
+
+
+/* =========================================================
+   OPEN MEMORY
+========================================================= */
+
+function openMemory(number) {
+
+
+    const memory =
+        memories[number];
+
+
+    document.getElementById(
+        "memoryNumber"
+    ).textContent =
+        memory.number;
+
+
+    document.getElementById(
+        "memorySymbol"
+    ).textContent =
+        memory.symbol;
+
+
+    document.getElementById(
+        "memoryText"
+    ).textContent =
+        memory.text;
+
+
+    const memoryDate = document.getElementById("memoryDate");
+
+    const memoryLinks = {
+        1: "https://theunsentproject.com/#",
+        2: "https://unsentnotes.com",
+        3: "https://scribbledthought.com"
+    };
+
+    memoryDate.innerHTML =
+        `<button type="button" class="memory-link" onclick="window.location.href='${memoryLinks[number]}'">me?</button>`;
+
+
+    document
+        .getElementById("memoryOverlay")
+        .classList.add("active");
+
+
+}
+
+
+/* =========================================================
+   CLOSE MEMORY
+========================================================= */
+
+function closeMemory() {
+
+    document
+        .getElementById("memoryOverlay")
+        .classList.remove("active");
+
+}
+
+
+/* =========================================================
+   MOUSE PARALLAX
+========================================================= */
+
+document.addEventListener(
+    "mousemove",
+    (event) => {
+
+
+        const x =
+            event.clientX /
+            window.innerWidth -
+            .5;
+
+
+        const y =
+            event.clientY /
+            window.innerHeight -
+            .5;
+
+
+        const glow =
+            document.querySelector(".glow");
+
+
+        glow.style.transform =
+
+            `translate(
+                ${x * 45 - 50}%,
+                ${y * 45}%
+            )`;
+
+
+        const butterfly =
+            document.querySelector(
+                ".floating-butterfly"
+            );
+
+
+        butterfly.style.transform =
+
+            `translate(
+                ${x * 35}px,
+                ${y * 35}px
+            )`;
+
+
+    }
+);
+
+
+/* =========================================================
+   REWIND
+========================================================= */
+
+function rewindMemory() {
+
+
+    document.body.classList.add(
+        "rewinding"
+    );
+
+
+    setTimeout(() => {
+
+        document.body.classList.remove(
+            "rewinding"
+        );
+
+    }, 1000);
+
+
+}
+
+
+/* =========================================================
+   NEXT PAGE
+========================================================= */
+
+function nextPage() {
+
+
+    document.body.classList.add(
+        "page-leaving"
+    );
+
+
+    setTimeout(() => {
+
+        window.location.href =
+            "page3.html";
+
+    }, 900);
+
+
+}
+
+
+</script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>The Choice</title>
+
+    <!-- Fonts -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Special+Elite&display=swap"
+        rel="stylesheet"
+    >
+
+    <link rel="stylesheet" href="page3.css">
+
+</head>
+
+
+<body>
+
+
+<!-- =========================================================
+     ENTRANCE TRANSITION
+========================================================= -->
+
+<div class="page3-transition"></div>
+
+
+
+<div class="scene">
+
+
+    <!-- Background glow -->
+
+    <div class="glow"></div>
+
+
+    <!-- =================================================
+         CHAPTER MARK
+    ================================================== -->
+
+    <div class="chapter-mark">
+
+        <span>CHAPTER 03</span>
+
+        <div class="little-line"></div>
+
+        <p>
+            some choices are worth making
+        </p>
+
+    </div>
+
+
+
+    <!-- =================================================
+         BACKGROUND BUTTERFLIES
+    ================================================== -->
+
+    <div
+        class="butterfly butterfly-one"
+    >
+        🦋
+    </div>
+
+    <div
+        class="butterfly butterfly-two"
+    >
+        🦋
+    </div>
+
+    <div
+        class="butterfly butterfly-three"
+    >
+        🦋
+    </div>
+
+    <div
+        class="butterfly butterfly-four"
+    >
+        🦋
+    </div>
+
+
+
+    <!-- =================================================
+         INTRO
+    ================================================== -->
+
+    <main class="intro" id="intro">
+
+        <div class="small-title">
+            THE CHOICE
+        </div>
+
+
+        <h1>
+
+            Every story eventually<br>
+            reaches a moment...
+
+        </h1>
+
+
+        <p>
+
+            where you have to choose what happens next.
+
+        </p>
+
+
+        <!-- =================================================
+             FINAL POLAROID
+        ================================================== -->
+
+        <div
+            class="final-polaroid"
+            onclick="openChoice()"
+        >
+
+            <div class="polaroid-photo">
+
+                <div class="photo-number">
+                    ONE LAST MEMORY
+                </div>
+
+                <div class="photo-butterfly">
+                    🦋
+                </div>
+
+                <div class="photo-note">
+                    click to look closer
+                </div>
+
+            </div>
+
+
+            <div class="polaroid-caption">
+
+                maybe this one matters.
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+
+    <!-- =================================================
+         CHOICE SECTION
+    ================================================== -->
+
+    <section
+        class="choice-section"
+        id="choiceSection"
+    >
+
+
+        <div class="choice-content">
+
+
+            <div class="choice-small">
+                ONE LAST THOUGHT
+            </div>
+
+
+            <h2>
+
+                Maybe the butterfly effect<br>
+                isn't about changing the past.
+
+            </h2>
+
+
+            <p class="choice-line">
+
+                Maybe it's about choosing what happens next.
+
+            </p>
+
+
+            <div class="choice-question">
+
+                So...
+
+            </div>
+
+
+            <h3>
+
+                Will you be part of my next chapter?
+
+            </h3>
+
+
+            <!-- =================================================
+                 BUTTONS
+            ================================================== -->
+
+            <div class="buttons">
+
+
+                <button
+                    class="yes-button"
+                    onclick="chooseYes()"
+                >
+
+                    YES 🦋
+
+                </button>
+
+
+                <button
+                    class="think-button"
+                    onclick="thinkAboutIt()"
+                >
+
+                    LET ME THINK...
+
+                </button>
+
+
+            </div>
+
+
+            <p
+                class="thinking-message"
+                id="thinkingMessage"
+            >
+
+            </p>
+
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- =================================================
+         FINAL ENDING
+    ================================================== -->
+
+    <section
+        class="ending"
+        id="ending"
+    >
+
+
+        <div class="ending-butterfly">
+
+            🦋
+
+        </div>
+
+
+        <div class="ending-small">
+
+            THEN LET'S WRITE IT TOGETHER.
+
+        </div>
+
+
+        <h2>
+
+            The end.
+
+        </h2>
+
+
+        <div class="ending-divider"></div>
+
+
+        <p>
+
+            or maybe...
+
+        </p>
+
+
+        <h3>
+
+            just the beginning.
+
+        </h3>
+
+
+    </section>
+
+
+
+    <!-- =================================================
+         REWIND
+    ================================================== -->
+
+    <div
+        class="rewind"
+        onclick="rewindPage()"
+    >
+
+        ↶ REWIND
+
+    </div>
+
+
+</div>
+
+
+
+<script>
+
+
+/* =========================================================
+   CREATE DUST
+========================================================= */
+
+const scene =
+    document.querySelector(".scene");
+
+
+for (let i = 0; i < 150; i++) {
+
+    const dust =
+        document.createElement("div");
+
+
+    dust.classList.add("dust");
+
+
+    dust.style.left =
+        Math.random() * 100 + "%";
+
+
+    dust.style.top =
+        Math.random() * 100 + "%";
+
+
+    dust.style.animationDelay =
+        Math.random() * 7 + "s";
+
+
+    dust.style.animationDuration =
+        3 + Math.random() * 6 + "s";
+
+
+    dust.style.opacity =
+        .15 + Math.random() * .5;
+
+
+    scene.appendChild(dust);
+
+}
+
+
+/* =========================================================
+   OPEN THE CHOICE
+========================================================= */
+
+function openChoice() {
+
+
+    document
+        .getElementById("intro")
+        .classList.add("hide");
+
+
+    setTimeout(() => {
+
+        document
+            .getElementById("choiceSection")
+            .classList.add("active");
+
+    }, 500);
+
+
+}
+
+
+/* =========================================================
+   LET ME THINK
+========================================================= */
+
+let thoughtCount = 0;
+
+
+function thinkAboutIt() {
+
+
+    const button =
+        document.querySelector(".think-button");
+
+
+    const message =
+        document.getElementById(
+            "thinkingMessage"
+        );
+
+
+    thoughtCount++;
+
+
+    if (thoughtCount === 1) {
+
+        message.textContent =
+            "Some choices are harder than others...";
+
+
+        button.style.transform =
+            "translateX(35px)";
+
+    }
+
+
+    else if (thoughtCount === 2) {
+
+        message.textContent =
+            "I'll wait... probably. 🦋";
+
+
+        button.style.transform =
+            "translateX(-45px)";
+
+    }
+
+
+    else {
+
+        message.textContent =
+            "Okay... but the butterfly is waiting. 🦋";
+
+
+        button.style.transform =
+            "translateX(20px)";
+
+    }
+
+}
+
+
+/* =========================================================
+   YES
+========================================================= */
+
+function chooseYes() {
+
+
+    document
+        .getElementById("choiceSection")
+        .classList.add("chosen");
+
+
+    document
+        .querySelectorAll(".butterfly")
+        .forEach((butterfly, index) => {
+
+            butterfly.style.animation =
+                "butterflyFinal 5s ease-in-out forwards";
+
+            butterfly.style.animationDelay =
+                index * .15 + "s";
+
+        });
+
+
+    setTimeout(() => {
+
+        document
+            .getElementById("ending")
+            .classList.add("active");
+
+    }, 1200);
+
+}
+
+
+/* =========================================================
+   REWIND
+========================================================= */
+
+function rewindPage() {
+
+
+    document.body.classList.add(
+        "rewinding"
+    );
+
+
+    setTimeout(() => {
+
+        document.body.classList.remove(
+            "rewinding"
+        );
+
+    }, 1000);
+
+}
+
+
+/* =========================================================
+   MOUSE PARALLAX
+========================================================= */
+
+document.addEventListener(
+    "mousemove",
+    (event) => {
+
+
+        const x =
+            event.clientX /
+            window.innerWidth -
+            .5;
+
+
+        const y =
+            event.clientY /
+            window.innerHeight -
+            .5;
+
+
+        const glow =
+            document.querySelector(".glow");
+
+
+        glow.style.transform =
+
+            `translate(
+                ${x * 45 - 50}%,
+                ${y * 45}%
+            )`;
+
+
+        const polaroid =
+            document.querySelector(
+                ".final-polaroid"
+            );
+
+
+        if (polaroid) {
+
+            polaroid.style.transform =
+
+                `rotate(-4deg)
+                 translate(
+                    ${x * 18}px,
+                    ${y * 18}px
+                 )`;
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   ENTRANCE TRANSITION
+========================================================= */
+
+window.addEventListener(
+    "load",
+    () => {
+
+        document
+            .querySelector(".page3-transition")
+            .classList.add("fade-out");
+
+    }
+);
+
+
+</script>
+
+
+</body>
+
+</html>

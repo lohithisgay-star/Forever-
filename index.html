@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>The Butterfly Effect</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Special+Elite&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="scene">
+
+        <div class="glow"></div>
+
+        <div class="consequence">
+
+            <img src="lis_butterfly.png" alt="Butterfly">
+
+            <span>
+                This action will have<br>
+                consequences...
+            </span>
+
+        </div>
+
+        <div class="polaroid">
+
+            <div class="photo">
+                🦋
+            </div>
+
+            <p>
+                Some moments<br>
+                change everything.
+            </p>
+
+        </div>
+
+        <div
+            class="butterfly"
+            style="left:10%; bottom:-30px; animation-duration:14s;"
+        >
+            🦋
+        </div>
+
+        <div
+            class="butterfly"
+            style="left:30%; bottom:-40px; animation-duration:18s; animation-delay:3s;"
+        >
+            🦋
+        </div>
+
+        <div
+            class="butterfly"
+            style="left:70%; bottom:-20px; animation-duration:15s; animation-delay:6s;"
+        >
+            🦋
+        </div>
+
+        <div
+            class="butterfly"
+            style="left:85%; bottom:-30px; animation-duration:20s; animation-delay:1s;"
+        >
+            🦋
+        </div>
+
+        <main class="content">
+
+            <div class="chapter">
+                CHAPTER 01
+            </div>
+
+            <h1 class="title">
+
+                The Butterfly Effect
+
+                <span>
+                    every choice creates a story
+                </span>
+
+            </h1>
+
+            <p class="subtitle">
+                Maybe some things aren't accidents.
+            </p>
+
+            <button
+                class="begin"
+                onclick="beginStory()"
+            >
+                Begin the story →
+            </button>
+
+        </main>
+
+        <div
+            class="rewind"
+            onclick="rewind()"
+        >
+            ↶ HOLD TO REWIND
+        </div>
+
+    </div>
+
+    <div class="transition"></div>
+
+    <script>
+
+        const scene =
+            document.querySelector(".scene");
+
+        /* Create lots of dust particles */
+
+        for (let i = 0; i < 110; i++) {
+
+            const dust =
+                document.createElement("div");
+
+            dust.classList.add("dust");
+
+            dust.style.left =
+                Math.random() * 100 + "%";
+
+            dust.style.top =
+                Math.random() * 100 + "%";
+
+            dust.style.animationDelay =
+                Math.random() * 6 + "s";
+
+            dust.style.animationDuration =
+                3 + Math.random() * 5 + "s";
+
+            dust.style.opacity =
+                .15 + Math.random() * .55;
+
+            if (Math.random() > .85) {
+                dust.classList.add("large");
+            }
+
+            scene.appendChild(dust);
+        }
+
+
+        /* Mouse parallax */
+
+        document.addEventListener("mousemove", (e) => {
+
+            const x =
+                e.clientX / window.innerWidth - .5;
+
+            const y =
+                e.clientY / window.innerHeight - .5;
+
+            document.querySelector(".glow").style.transform =
+                `translate(${x * 40 - 50}%, ${y * 40}%)`;
+
+            document.querySelector(".polaroid").style.transform =
+                `rotate(7deg) translate(${x * 20}px, ${y * 20}px)`;
+
+        });
+
+
+        /* Go to Page 2 */
+
+        function beginStory() {
+
+            document
+                .querySelector(".transition")
+                .classList.add("active");
+
+            setTimeout(() => {
+
+                window.location.href = "page2.html";
+
+            }, 1000);
+
+        }
+
+
+        /* Rewind */
+
+        function rewind() {
+
+            document.body.style.filter =
+                "saturate(.3) contrast(1.2)";
+
+            document.querySelector(".scene").style.transform =
+                "scale(1.03)";
+
+            setTimeout(() => {
+
+                document.body.style.filter = "";
+
+                document.querySelector(".scene").style.transform =
+                    "";
+
+            }, 700);
+
+        }
+
+    </script>
+
+</body>
+</html>

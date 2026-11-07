@@ -1,0 +1,762 @@
+/* =====================================================
+   RESET
+===================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    overflow: hidden;
+    background: #07101f;
+    color: white;
+    font-family: 'Patrick Hand', cursive;
+}
+
+
+/* =====================================================
+   MAIN SCENE
+===================================================== */
+
+.scene {
+    position: relative;
+
+    width: 100%;
+    height: 100vh;
+
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at 50% 40%,
+            rgba(116, 103, 255, .25),
+            transparent 35%
+        ),
+
+        linear-gradient(
+            135deg,
+            #07101f,
+            #101c3a,
+            #261d46,
+            #07101f
+        );
+}
+
+
+/* =====================================================
+   BACKGROUND GLOW
+===================================================== */
+
+.glow {
+    position: absolute;
+
+    width: 600px;
+    height: 600px;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(155, 135, 255, .15),
+            transparent 70%
+        );
+
+    border-radius: 50%;
+
+    top: 10%;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    animation: breathing 6s infinite ease-in-out;
+
+    pointer-events: none;
+}
+
+@keyframes breathing {
+
+    0%,
+    100% {
+        transform:
+            translateX(-50%)
+            scale(1);
+
+        opacity: .5;
+    }
+
+    50% {
+        transform:
+            translateX(-50%)
+            scale(1.25);
+
+        opacity: 1;
+    }
+}
+
+
+/* =====================================================
+   DUST PARTICLES
+===================================================== */
+
+.dust {
+    position: absolute;
+
+    width: 2px;
+    height: 2px;
+
+    border-radius: 50%;
+
+    background: rgba(255,255,255,.8);
+
+    pointer-events: none;
+
+    animation:
+        dustFloat
+        ease-in-out
+        infinite;
+}
+
+.dust.large {
+    width: 3px;
+    height: 3px;
+
+    filter: blur(.5px);
+}
+
+@keyframes dustFloat {
+
+    0%,
+    100% {
+        transform:
+            translate(0, 0)
+            scale(.5);
+
+        opacity: .15;
+    }
+
+    50% {
+        transform:
+            translate(15px, -25px)
+            scale(1.4);
+
+        opacity: .8;
+    }
+}
+
+
+/* =====================================================
+   TOP LEFT MESSAGE
+===================================================== */
+
+.consequence {
+
+    position: absolute;
+
+    top: 22px;
+    left: 28px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    z-index: 30;
+
+    color:
+        rgba(255,255,255,.82);
+
+    font-family:
+        'Patrick Hand',
+        cursive;
+
+    font-size: 17px;
+
+    line-height: 1.05;
+
+    opacity: .9;
+
+    animation:
+        consequenceWiggle
+        4s
+        ease-in-out
+        infinite;
+}
+
+.consequence img {
+
+    width: 58px;
+    height: auto;
+
+    display: block;
+
+    filter:
+        brightness(0)
+        invert(1)
+        drop-shadow(
+            0 0 7px
+            rgba(255,255,255,.25)
+        );
+
+    transform-origin: center;
+
+    animation:
+        butterflyWiggle
+        2.8s
+        ease-in-out
+        infinite;
+}
+
+@keyframes butterflyWiggle {
+
+    0%,
+    100% {
+        transform:
+            rotate(-4deg)
+            scale(1);
+    }
+
+    25% {
+        transform:
+            rotate(5deg)
+            scale(1.04);
+    }
+
+    50% {
+        transform:
+            rotate(-3deg)
+            scale(.97);
+    }
+
+    75% {
+        transform:
+            rotate(4deg)
+            scale(1.03);
+    }
+}
+
+@keyframes consequenceWiggle {
+
+    0%,
+    100% {
+        transform: rotate(-.5deg);
+    }
+
+    25% {
+        transform:
+            rotate(.7deg)
+            translateY(-1px);
+    }
+
+    50% {
+        transform: rotate(-.4deg);
+    }
+
+    75% {
+        transform:
+            rotate(.5deg)
+            translateY(1px);
+    }
+}
+
+
+/* =====================================================
+   POLAROID
+===================================================== */
+
+.polaroid {
+
+    position: absolute;
+
+    width: 180px;
+    height: 220px;
+
+    background: #eeeeee;
+
+    right: 12%;
+    top: 18%;
+
+    transform: rotate(7deg);
+
+    padding: 12px;
+
+    box-shadow:
+        0 20px 50px
+        rgba(0,0,0,.5);
+
+    z-index: 8;
+
+    transition:
+        transform .5s ease,
+        box-shadow .5s ease;
+
+    animation:
+        floatingPhoto
+        5s
+        ease-in-out
+        infinite;
+}
+
+.polaroid:hover {
+
+    transform:
+        rotate(0deg)
+        scale(1.08);
+
+    box-shadow:
+        0 25px 70px
+        rgba(130,120,255,.4);
+}
+
+.photo {
+
+    width: 100%;
+    height: 155px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #5264a3,
+            #9b8fd3,
+            #d5a7c7
+        );
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    color: white;
+
+    font-size: 50px;
+}
+
+.polaroid p {
+
+    color: #222;
+
+    text-align: center;
+
+    margin-top: 12px;
+
+    font-size: 15px;
+
+    line-height: 1.1;
+}
+
+@keyframes floatingPhoto {
+
+    0%,
+    100% {
+        margin-top: 0;
+    }
+
+    50% {
+        margin-top: -15px;
+    }
+}
+
+
+/* =====================================================
+   BACKGROUND BUTTERFLIES
+===================================================== */
+
+.butterfly {
+
+    position: absolute;
+
+    font-size: 25px;
+
+    opacity: .7;
+
+    pointer-events: none;
+
+    filter:
+        drop-shadow(
+            0 0 10px
+            rgba(160,130,255,.8)
+        );
+
+    animation:
+        fly
+        linear
+        infinite;
+}
+
+@keyframes fly {
+
+    0% {
+        transform:
+            translate(0, 0)
+            rotate(0deg);
+    }
+
+    25% {
+        transform:
+            translate(100px,-120px)
+            rotate(20deg);
+    }
+
+    50% {
+        transform:
+            translate(-80px,-250px)
+            rotate(-15deg);
+    }
+
+    75% {
+        transform:
+            translate(150px,-380px)
+            rotate(15deg);
+    }
+
+    100% {
+        transform:
+            translate(-100px,-550px)
+            rotate(-10deg);
+    }
+}
+
+
+/* =====================================================
+   MAIN CONTENT
+===================================================== */
+
+.content {
+
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    transform:
+        translate(-50%, -50%);
+
+    width: 90%;
+
+    max-width: 900px;
+
+    text-align: center;
+
+    z-index: 10;
+}
+
+
+/* Chapter */
+
+.chapter {
+
+    font-family:
+        'Special Elite',
+        monospace;
+
+    font-size: 13px;
+
+    letter-spacing: 5px;
+
+    opacity: .55;
+
+    margin-bottom: 25px;
+
+    animation:
+        fadeUp
+        1.5s
+        ease
+        forwards;
+}
+
+
+/* =====================================================
+   TITLE
+===================================================== */
+
+.title {
+
+    font-size:
+        clamp(
+            60px,
+            10vw,
+            130px
+        );
+
+    font-weight: normal;
+
+    line-height: .8;
+
+    text-shadow:
+        0 0 20px
+        rgba(160,150,255,.3);
+
+    animation:
+        titleAppear
+        2s
+        ease
+        forwards;
+}
+
+.title span {
+
+    display: block;
+
+    font-size: .35em;
+
+    letter-spacing: 12px;
+
+    margin-top: 25px;
+
+    opacity: .7;
+}
+
+
+/* =====================================================
+   SUBTITLE
+===================================================== */
+
+.subtitle {
+
+    margin-top: 35px;
+
+    font-size: 21px;
+
+    opacity: .75;
+
+    animation:
+        fadeUp
+        2s
+        ease
+        forwards;
+}
+
+
+/* =====================================================
+   BEGIN BUTTON
+===================================================== */
+
+.begin {
+
+    margin-top: 45px;
+
+    padding:
+        14px 35px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.4);
+
+    background:
+        rgba(255,255,255,.05);
+
+    color: white;
+
+    font-family:
+        'Patrick Hand',
+        cursive;
+
+    font-size: 20px;
+
+    cursor: pointer;
+
+    backdrop-filter:
+        blur(10px);
+
+    transition:
+        .4s ease;
+}
+
+.begin:hover {
+
+    background:
+        rgba(255,255,255,.15);
+
+    transform:
+        translateY(-4px);
+
+    box-shadow:
+        0 10px 30px
+        rgba(130,120,255,.25);
+}
+
+
+/* =====================================================
+   REWIND
+===================================================== */
+
+.rewind {
+
+    position: absolute;
+
+    bottom: 25px;
+
+    left: 50%;
+
+    transform:
+        translateX(-50%);
+
+    font-family:
+        'Special Elite',
+        monospace;
+
+    font-size: 11px;
+
+    letter-spacing: 2px;
+
+    opacity: .45;
+
+    cursor: pointer;
+
+    z-index: 30;
+
+    transition: .3s;
+}
+
+.rewind:hover {
+    opacity: 1;
+}
+
+
+/* =====================================================
+   PAGE TRANSITION
+===================================================== */
+
+.transition {
+
+    position: fixed;
+
+    inset: 0;
+
+    background: #e8e5ff;
+
+    z-index: 100;
+
+    transform:
+        scaleY(0);
+
+    transform-origin:
+        bottom;
+
+    transition:
+        transform
+        1s
+        cubic-bezier(
+            .7,
+            0,
+            .3,
+            1
+        );
+}
+
+.transition.active {
+
+    transform:
+        scaleY(1);
+}
+
+
+/* =====================================================
+   ANIMATIONS
+===================================================== */
+
+@keyframes fadeUp {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+}
+
+@keyframes titleAppear {
+
+    from {
+
+        opacity: 0;
+
+        letter-spacing: 20px;
+
+        filter: blur(10px);
+    }
+
+    to {
+
+        opacity: 1;
+
+        letter-spacing: 0;
+
+        filter: blur(0);
+    }
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 700px) {
+
+    .consequence {
+
+        top: 15px;
+        left: 15px;
+
+        font-size: 14px;
+    }
+
+    .consequence img {
+        width: 45px;
+    }
+
+    .polaroid {
+
+        width: 130px;
+        height: 165px;
+
+        right: 5%;
+        top: 12%;
+
+        padding: 8px;
+    }
+
+    .photo {
+
+        height: 110px;
+
+        font-size: 35px;
+    }
+
+    .polaroid p {
+
+        font-size: 11px;
+
+        margin-top: 7px;
+    }
+
+    .subtitle {
+        font-size: 18px;
+    }
+
+    .begin {
+
+        font-size: 18px;
+
+        padding:
+            12px 28px;
+    }
+
+    .rewind {
+        bottom: 15px;
+    }
+}
